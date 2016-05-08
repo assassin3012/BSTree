@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(PROJECT Matrix)
+set(PROJECT BSTree)
 
 project (${PROJECT})
 
