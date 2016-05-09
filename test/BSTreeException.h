@@ -11,7 +11,7 @@ public:
 class EmptyException : public BSTreeException
 {
 public:
-	EmptyTree() : BSTreeException("Tree is empty") {};
+	EmptyException() : BSTreeException("Tree is empty") {};
 };
 class InputException : public BSTreeException
 {
