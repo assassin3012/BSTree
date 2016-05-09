@@ -83,7 +83,6 @@ Node<T>* BSTree<T>::search(Node<T>* node, const T &k)
 		}
 		else
 		{
-			//throw "No node";
 			return nullptr;
 		}
 	}
@@ -95,7 +94,6 @@ Node<T>* BSTree<T>::search(Node<T>* node, const T &k)
 		}
 		else
 		{
-			//throw "No node";
 			return nullptr;
 		}
 	}
