@@ -1,8 +1,8 @@
-
 #include "BSTree.h"
 #include "BSTree.cpp"
 #include <catch.hpp>
 #include <fstream>
+using namespace std;
 
 SCENARIO("BSTree init", "[init]") 
 {
