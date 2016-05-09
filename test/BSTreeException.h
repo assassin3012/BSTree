@@ -11,15 +11,15 @@ public:
 class EmptyException : public BSTreeException
 {
 public:
-	EmptyTree() : EmptyException("Tree is empty") {};
+	EmptyTree() : BSTreeException("Tree is empty") {};
 };
 class InputException : public BSTreeException
 {
 public:
-	InputException() : TreeException("Error in input") {};
+	InputException() : BSTreeException("Error in input") {};
 };
 class InputFileException : public BSTreeException
 {
 public:
-	InputFileException() : TreeException("Error in input from file") {};
+	InputFileException() : BSTreeException("Error in input from file") {};
 };
