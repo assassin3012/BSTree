@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "BSTree.h"
 #include <initializer_list>
 
@@ -11,7 +10,6 @@ BSTree<T>::BSTree(const std::initializer_list<T> &list)
 		this->insert(i);
 	}
 }
-
 template <typename T>
 void BSTree<T>::insert(const T &k)
 {
@@ -39,8 +37,7 @@ void BSTree<T>::insert(const T &k)
 		}
 		if (search(k) != nullptr)
 		{
-			cout << "copy key" << endl;
-			//throw "copy key";
+			throw "copy key";
 		}
 		else
 		{
@@ -64,7 +61,6 @@ Node<T>* BSTree<T>::search(const T &k)
 	if (root == nullptr)
 	{
 		throw "Empty tree";
-
 	}
 	else
 	{
@@ -104,7 +100,6 @@ Node<T>* BSTree<T>::search(Node<T>* node, const T &k)
 		}
 	}
 }
-
 template <typename T>
 void BSTree<T>::remove(const T &k)
 {
@@ -138,7 +133,6 @@ void BSTree<T>::remove(const T &k)
 		delete node;
 	}
 }
-
 template <typename T>
 void BSTree<T>::printBSTree(std::ostream &os = std::cout)
 {
@@ -167,14 +161,12 @@ void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os)
 		printBSTree(node->right, os);
 	}
 }
-
 template <typename T>
 std::ostream & operator << (std::ostream &os, BSTree<T> &out)
 {
 	out.printBSTree(os);
 	return os;
 }
-
 template <typename T>
 std::istream & operator >> (std::istream &input, BSTree<T> &in)
 {
@@ -199,7 +191,6 @@ std::fstream & operator << (std::fstream &file, BSTree<T> &out)
 	out.printBSTree(file);
 	return file;
 }
-
 template <typename T>
 std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 {
