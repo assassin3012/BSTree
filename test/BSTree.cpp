@@ -173,7 +173,7 @@ template <typename T>
 std::istream & operator >> (std::istream &input, BSTree<T> &in)
 {
 	unsigned int n;
-	if (!input >> n)
+	if (!(input >> n))
 		{
 			throw InputException();
 		}
@@ -202,7 +202,7 @@ template <typename T>
 std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 {
 	unsigned int n;
-	if (!file >> n)
+	if (!(file >> n))
 		{
 			throw InputException();
 		}
