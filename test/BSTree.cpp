@@ -157,7 +157,7 @@ void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os)
 	{
 		printBSTree(node->left, os);
 	}
-	std::cout<< node->key << std::endl;
+	os << node->key << " ";
 	if (node->right != nullptr)
 	{
 		printBSTree(node->right, os);
@@ -184,7 +184,8 @@ std::istream & operator >> (std::istream &input, BSTree<T> &in)
 		{
 			in.insert(temp);
 		}
-		else {
+		else 
+		{
 			throw InputException();
 		}
 	}
@@ -193,6 +194,7 @@ std::istream & operator >> (std::istream &input, BSTree<T> &in)
 template <typename T>
 std::fstream & operator << (std::fstream &file, BSTree<T> &out)
 {
+	file << out.size() << " ";
 	out.printBSTree(file);
 	return file;
 }
@@ -211,7 +213,8 @@ std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 		{
 			in.insert(temp);
 		}
-		else {
+		else 
+		{
 			throw InputFileException();
 		}
 	}
