@@ -173,7 +173,10 @@ template <typename T>
 std::istream & operator >> (std::istream &input, BSTree<T> &in)
 {
 	unsigned int n;
-	input >> n;
+	if (input >> n)
+		{
+			throw InputException();
+		}
 	T temp;
 	for (unsigned int i = 0; i < n; ++i)
 	{
@@ -197,7 +200,10 @@ template <typename T>
 std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 {
 	unsigned int n;
-	file >> n;
+	if (file >> n)
+		{
+			throw InputException();
+		}
 	T temp;
 	for (unsigned int i = 0; i < n; ++i)
 	{
