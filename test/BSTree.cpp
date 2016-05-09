@@ -136,7 +136,7 @@ void BSTree<T>::remove(const T &k)
 	}
 }
 template <typename T>
-void BSTree<T>::printBSTree(std::ostream &os = std::cout)
+void BSTree<T>::printBSTree(std::ostream &os/* = std::cout*/)
 {
 	if (root == nullptr)
 	{
