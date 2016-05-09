@@ -1,5 +1,6 @@
 
 #include "BSTree.h"
+#include "BSTree.cpp"
 #include <catch.hpp>
 #include <fstream>
 
