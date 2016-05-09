@@ -41,11 +41,11 @@ SCENARIO("BSTree operator >>", "[file&stream input]")
 	file >> Tree;
 	file.close();
 	REQUIRE(Tree.size() == 5);
-	REQUIRE(b.search(4) != nullptr);
-	REQUIRE(b.search(5) != nullptr);
-	REQUIRE(b.search(2) != nullptr);
-	REQUIRE(b.search(6) != nullptr);
-	REQUIRE(b.search(7) != nullptr);
+	REQUIRE(Tree.search(4) != nullptr);
+	REQUIRE(Tree.search(5) != nullptr);
+	REQUIRE(Tree.search(2) != nullptr);
+	REQUIRE(Tree.search(6) != nullptr);
+	REQUIRE(Tree.search(7) != nullptr);
 }
 
 SCENARIO("BSTree operator <<", "[file&stream output]") 
@@ -57,11 +57,11 @@ SCENARIO("BSTree operator <<", "[file&stream output]")
 	out >> OutTree;
 	file.close();
 	out.close();
-	REQUIRE(b.search(4) != nullptr);
-	REQUIRE(b.search(5) != nullptr);
-	REQUIRE(b.search(2) != nullptr);
-	REQUIRE(b.search(6) != nullptr);
-	REQUIRE(b.search(7) != nullptr);
+	REQUIRE(Tree.search(4) != nullptr);
+	REQUIRE(Tree.search(5) != nullptr);
+	REQUIRE(Tree.search(2) != nullptr);
+	REQUIRE(Tree.search(6) != nullptr);
+	REQUIRE(Tree.search(7) != nullptr);
 }
 SCENARIO("BSTree EmptyException", "[emptyerror]")
 {
@@ -84,7 +84,7 @@ SCENARIO("Exception fill", "[fillerror]")
 {
 	bool flagBad=false;
 	bool flag=false;
-	BSTRee<int> Tree;
+	BSTree<int> Tree;
 	try {
 		std::ifstream("404.txt") >> Tree;
 	}
