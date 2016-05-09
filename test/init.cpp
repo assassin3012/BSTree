@@ -69,7 +69,7 @@ SCENARIO("BSTree EmptyException", "[emptyerror]")
 	bool flag=false;
 	BSTree<int> Tree;
 	try {
-	  Tree.seacrh(404);
+	  Tree.search(404);
 	}
 	catch (EmptyException &ex) {
 		flag = true;
