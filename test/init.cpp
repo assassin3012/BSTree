@@ -59,6 +59,7 @@ SCENARIO("BSTree operator <<", "[file&stream output]")
 	fstream file("Tree.txt"), out("out.txt");
 	file >> Tree;
 	out << Tree;
+	out.seekg(0);
 	out >> OutTree;
 	file.close();
 	out.close();
