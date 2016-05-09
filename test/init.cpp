@@ -1,7 +1,11 @@
 #include "BSTree.h"
 #include "BSTree.cpp"
 #include <catch.hpp>
+#include <iostream>
 #include <fstream>
+#include "stdlib.h"
+#include <algorithm>
+#include <iterator> 
 using namespace std;
 
 SCENARIO("BSTree init", "[init]") 
