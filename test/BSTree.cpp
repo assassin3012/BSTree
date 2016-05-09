@@ -60,7 +60,7 @@ Node<T>* BSTree<T>::search(const T &k)
 {
 	if (root == nullptr)
 	{
-		throw "Empty tree";
+		throw EmptyException();
 	}
 	else
 	{
@@ -103,7 +103,7 @@ void BSTree<T>::remove(const T &k)
 {
 	if (root == nullptr)
 	{
-		throw "Empty tree";
+		throw EmptyException();
 	}
 	else
 	{
@@ -136,7 +136,7 @@ void BSTree<T>::printBSTree(std::ostream &os = std::cout)
 {
 	if (root == nullptr)
 	{
-		throw "Empty tree";
+		throw EmptyException();
 	}
 	else
 	{
@@ -178,7 +178,7 @@ std::istream & operator >> (std::istream &input, BSTree<T> &in)
 			in.insert(temp);
 		}
 		else {
-			throw "Error in input N1";
+			throw InputException();
 		}
 	}
 	return input;
@@ -202,7 +202,7 @@ std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 			in.insert(temp);
 		}
 		else {
-			throw "Error in input from file";
+			throw InputFileException();
 		}
 	}
 	return file;
