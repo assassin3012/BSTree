@@ -37,7 +37,7 @@ void BSTree<T>::insert(const T &k)
 		}
 		if (search(k) != nullptr)
 		{
-			throw "copy key";
+		//	throw "copy key";
 		}
 		else
 		{
