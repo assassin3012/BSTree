@@ -155,7 +155,7 @@ void BSTree<T>::printBSTree(std::ostream &os = std::cout)
 	}
 }
 template <typename T>
-void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os=std::cout)
+void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os)
 {
 	if (node->left != nullptr)
 	{
@@ -171,7 +171,7 @@ void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os=std::cout)
 template <typename T>
 std::ostream & operator << (std::ostream &os, BSTree<T> &out)
 {
-	out->printtree(os, out);
+	out.printBSTree(os);
 	return os;
 }
 
@@ -185,18 +185,18 @@ std::istream & operator >> (std::istream &input, BSTree<T> &in)
 	{
 		if (input >> temp)
 		{
-			in->insert(temp);
+			in.insert(temp);
 		}
 		else {
 			throw "Error in input N1";
 		}
 	}
-	return file;
+	return input;
 }
 template <typename T>
 std::fstream & operator << (std::fstream &file, BSTree<T> &out)
 {
-	out->printtree(file, out);
+	out.printBSTree(file);
 	return file;
 }
 
@@ -210,7 +210,7 @@ std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 	{
 		if (file >> temp)
 		{
-			in->insert(temp);
+			in.insert(temp);
 		}
 		else {
 			throw "Error in input from file";

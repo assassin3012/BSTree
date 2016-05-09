@@ -45,9 +45,9 @@ public:
 	void insert(const T &k);
 	void remove(const T &k);
 	auto begin() { return &root; };
-	auto end() { return &root + sizeof(root)*_size; };
+	auto end() { return &root + sizeof(root)*_size+sizeof(_size); };
 	size_t size() { return _size; };
-	void printBSTree(std::ostream &);
+	void printBSTree(std::ostream &os=cout);
 	friend std::ostream & operator << <>(std::ostream &output, BSTree &);
 	friend std::istream & operator >> <>(std::istream &input, BSTree &);
 	friend std::fstream & operator << <>(std::fstream &file, BSTree<T> &);
