@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include "BSTreeException.cpp"
+#include "BSTreeException.h"
 
 template <typename T>
 class BSTree;
