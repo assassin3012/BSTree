@@ -105,6 +105,10 @@ void BSTree<T>::remove(const T &k)
 	{
 		throw EmptyException();
 	}
+	else if (search(k) == nullptr)
+	{
+		//throw "Empty"
+	}
 	else
 	{
 		Node<T>* node = search(k);
