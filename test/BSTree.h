@@ -39,7 +39,7 @@ class BSTree
 public:
 	BSTree<T>() : root(nullptr), _size(0) {};
 	BSTree<T>(const std::initializer_list<T> &);
-	~BSTree() { if (root!=nullptr) remove(root->key); }
+	~BSTree() { if (root!=nullptr) deletetree(root->key); }
 	Node<T>* search(const T &k) const;
 	Node<T>* next(Node<T>* node) const;
 	Node<T>* prev(Node<T>* node) const;
