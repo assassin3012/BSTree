@@ -2,6 +2,54 @@
 #include <initializer_list>
 
 template <typename T>
+Node<T>* BSTree<T>::next(Node<T>* node) const
+{
+	if (node->right != nullptr)
+	{
+		return min(node->right);
+	}
+	Node<T>* pos = node->parent;
+	while (pos != nullptr && node == pos->right)
+	{
+		node = pos;
+		pos = pos->parent;
+	}
+	return pos;
+}
+template <typename T>
+Node<T>* BSTree<T>::prev(Node<T>* node) const
+{
+	if (node->left != nullptr)
+	{
+		return max(node->left);
+	}
+	Node<T>* pos = node->parent;
+	while (pos != nullptr && node == pos->left)
+	{
+		node = pos;
+		pos = pos->parent;
+	}
+	return pos;
+}
+template <typename T>
+Node<T>* BSTree<T>::max(Node<T>* node) const
+{
+	if (node->right == nullptr)
+	{
+		return node;
+	}
+	return max(node->right);
+}
+template <typename T>
+Node<T>* BSTree<T>::min(Node<T>* node) const
+{
+	if (node->left == nullptr)
+	{
+		return node;
+	}
+	return min(node->left);
+}
+template <typename T>
 BSTree<T>::BSTree(const std::initializer_list<T> &list)
 {
 	root = nullptr;
@@ -37,7 +85,7 @@ void BSTree<T>::insert(const T &k)
 		}
 		if (search(k) != nullptr)
 		{
-		//	throw "copy key";
+			//	throw "copy key";
 		}
 		else
 		{
@@ -56,7 +104,7 @@ void BSTree<T>::insert(const T &k)
 	}
 }
 template <typename T>
-Node<T>* BSTree<T>::search(const T &k)
+Node<T>* BSTree<T>::search(const T &k) const
 {
 	if (root == nullptr)
 	{
@@ -69,7 +117,7 @@ Node<T>* BSTree<T>::search(const T &k)
 	}
 }
 template <typename T>
-Node<T>* BSTree<T>::search(Node<T>* node, const T &k)
+Node<T>* BSTree<T>::search(Node<T>* node, const T &k) const
 {
 	if (node->key == k)
 	{
@@ -112,6 +160,107 @@ void BSTree<T>::remove(const T &k)
 	else
 	{
 		Node<T>* node = search(k);
+		if (node->left == nullptr && node->right == nullptr)
+		{
+			if (node->parent != nullptr)
+			{
+				if (node->parent->left == node)
+				{
+					node->parent->left = nullptr;
+				}
+				else
+				{
+					node->parent->right = nullptr;
+				}
+			}
+			this->_size -= 1;
+			delete node;
+		}
+		else if (node->left == nullptr || node->right == nullptr)
+		{
+			if (node->parent != nullptr)
+			{
+				if (node->left == nullptr)
+				{
+					if (node->parent->left == node)
+					{
+						node->parent->left = node->right;
+					}
+					else
+					{
+						node->parent->right = node->right;
+					}
+					node->right->parent = node->parent;
+				}
+				else
+				{
+					if (node->parent->left == node)
+					{
+						node->parent->left = node->left;
+					}
+					else
+					{
+						node->parent->right = node->left;
+					}
+					node->left->parent = node->parent;
+				}
+				this->_size -= 1;
+				delete node;
+			}
+			else
+			{
+				if (node->left == nullptr)
+				{
+					root = node->right;
+					node->right->parent = nullptr;
+				}
+				else
+				{
+					root = node->left;
+					node->left->parent = nullptr;
+				}
+				this->_size -= 1;
+				delete node;
+			}
+		}
+		else
+		{
+			Node<T>* pos = next(node);
+			node->key = pos->key;
+			if (pos->parent->left == pos)
+			{
+				pos->parent->left = pos->right;
+				if (pos->right != nullptr)
+				{
+					pos->right->parent = pos->parent;
+				}
+			}
+			else
+			{
+				pos->parent->right = pos->right;
+				if (pos->right != nullptr)
+				{
+					pos->right->parent = pos->parent;
+				}
+			}
+			delete pos;
+		}
+	}
+}
+template <typename T>
+void BSTree<T>::deletetree(const T &k)
+{
+	if (root == nullptr)
+	{
+		throw EmptyException();
+	}
+	else if (search(k) == nullptr)
+	{
+		//throw "Empty";
+	}
+	else
+	{
+		Node<T>* node = search(k);
 		if (node->left != nullptr)
 		{
 			remove(node->left->key);
@@ -120,7 +269,7 @@ void BSTree<T>::remove(const T &k)
 		{
 			remove(node->right->key);
 		}
-		if (node->parent->left == nullptr)
+		if (node->parent != nullptr)
 		{
 			if (node->parent->left == node)
 			{
@@ -136,7 +285,7 @@ void BSTree<T>::remove(const T &k)
 	}
 }
 template <typename T>
-void BSTree<T>::printBSTree(std::ostream &os/* = std::cout*/)
+void BSTree<T>::printBSTree(std::ostream &os/* = std::cout*/) const
 {
 	if (root == nullptr)
 	{
@@ -151,7 +300,7 @@ void BSTree<T>::printBSTree(std::ostream &os/* = std::cout*/)
 	}
 }
 template <typename T>
-void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os)
+void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os) const
 {
 	if (node->left != nullptr)
 	{
@@ -174,9 +323,9 @@ std::istream & operator >> (std::istream &input, BSTree<T> &in)
 {
 	unsigned int n;
 	if (!(input >> n))
-		{
-			throw InputException();
-		}
+	{
+		throw InputException();
+	}
 	T temp;
 	for (unsigned int i = 0; i < n; ++i)
 	{
@@ -184,7 +333,7 @@ std::istream & operator >> (std::istream &input, BSTree<T> &in)
 		{
 			in.insert(temp);
 		}
-		else 
+		else
 		{
 			throw InputException();
 		}
@@ -203,9 +352,9 @@ std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 {
 	unsigned int n;
 	if (!(file >> n))
-		{
-			throw InputException();
-		}
+	{
+		throw InputException();
+	}
 	T temp;
 	for (unsigned int i = 0; i < n; ++i)
 	{
@@ -213,7 +362,7 @@ std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 		{
 			in.insert(temp);
 		}
-		else 
+		else
 		{
 			throw InputFileException();
 		}
