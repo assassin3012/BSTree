@@ -243,6 +243,7 @@ void BSTree<T>::remove(const T &k)
 					pos->right->parent = pos->parent;
 				}
 			}
+			this->_size -= 1;
 			delete pos;
 		}
 	}
