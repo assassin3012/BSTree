@@ -28,12 +28,12 @@ SCENARIO("BSTree insert element", "[insert]")
 SCENARIO("BSTree max element", "[max]") 
 {
 	BSTree<int> Tree{4,3,7,2,1,5,23};
-	REQUIRE(Tree.max()->key == 23);
+	REQUIRE(Tree.max(Tree.search(4))->key == 23);
 }
 SCENARIO("BSTree min element", "[min]") 
 {
 	BSTree<int> Tree{4,3,7,2,1,5,23};
-	REQUIRE(Tree.min()->key == 1);
+	REQUIRE(Tree.min(Tree.search(4))->key == 1);
 }
 SCENARIO("BSTree next element", "[next]") 
 {
