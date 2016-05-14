@@ -38,12 +38,12 @@ SCENARIO("BSTree min element", "[min]")
 SCENARIO("BSTree next element", "[next]") 
 {
 	BSTree<int> Tree{4,3,7,2,1,5,23};
-	REQUIRE(Tree.next(Tree.search(5)) == 7);
+	REQUIRE(Tree.next(Tree.search(5)) == Tree.search(7));
 }
 SCENARIO("BSTree prev element", "[prev]") 
 {
 	BSTree<int> Tree{4,3,7,2,1,5,23};
-	REQUIRE(Tree.next(Tree.search(5)) == 4);
+	REQUIRE(Tree.next(Tree.search(5)) == Tree.search(4));
 }
 SCENARIO("BSTree search", "[search]") 
 {
