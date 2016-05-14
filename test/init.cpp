@@ -39,12 +39,13 @@ SCENARIO("BSTree next element", "[next]")
 {
 	BSTree<int> Tree{4,3,7,2,1,5,23};
 	REQUIRE(Tree.next(Tree.search(5)) == Tree.search(7));
+	REQUIRE(Tree.next(Tree.search(7)) == Tree.search(23));
 }
 SCENARIO("BSTree prev element", "[prev]") 
 {
 	BSTree<int> Tree{4,3,7,2,1,5,23};
 	REQUIRE(Tree.prev(Tree.search(5)) == Tree.search(4));
-	REQUIRE(Tree.prev(Tree.search(4)) == Tree.search(4));
+	REQUIRE(Tree.prev(Tree.search(4)) == Tree.search(3));
 }
 SCENARIO("BSTree search", "[search]") 
 {
