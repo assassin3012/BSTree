@@ -48,8 +48,8 @@ public:
 	void insert(const T &k);
 	void deletetree(const T &k);
 	void remove(const T &k);
-	//auto begin() { return &root; };
-	//auto end() { return &root + sizeof(root)*_size+sizeof(_size); };
+	//auto begin() {};
+	//auto end() { };
 	size_t size() { return _size; };
 	void printBSTree(std::ostream &os/*=std::cout*/) const;
 	friend std::ostream & operator << <>(std::ostream &output, BSTree &);
