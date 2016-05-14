@@ -25,6 +25,26 @@ SCENARIO("BSTree insert element", "[insert]")
 	Tree.insert(3);
 	REQUIRE(Tree.size() == 2);
 }
+SCENARIO("BSTree max element", "[max]") 
+{
+	BSTree<int> Tree{4,3,7,2,1,5,23};
+	REQUIRE(Tree.max() == 23);
+}
+SCENARIO("BSTree min element", "[min]") 
+{
+	BSTree<int> Tree{4,3,7,2,1,5,23};
+	REQUIRE(Tree.max() == 1);
+}
+SCENARIO("BSTree next element", "[next]") 
+{
+	BSTree<int> Tree{4,3,7,2,1,5,23};
+	REQUIRE(Tree.next(Tree.search(5)) == 7);
+}
+SCENARIO("BSTree prev element", "[prev]") 
+{
+	BSTree<int> Tree{4,3,7,2,1,5,23};
+	REQUIRE(Tree.next(Tree.search(5)) == 4);
+}
 SCENARIO("BSTree search", "[search]") 
 {
 	BSTree<int> Tree {1,2,3};
