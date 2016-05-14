@@ -37,7 +37,7 @@ SCENARIO("BSTree remove", "[remove]")
 {
 	BSTree<int> Tree {1,2,3,4,5};
 	Tree.remove(4);
-	REQUIRE(Tree.size()==3);
+	REQUIRE(Tree.size()==4);
 }
 SCENARIO("BSTree operator >>", "[file&stream input]") 
 {
