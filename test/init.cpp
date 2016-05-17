@@ -63,11 +63,41 @@ SCENARIO("BSTree remove", "[remove]")
 }
 SCENARIO("BSTree delete root without children", "[delete]") 
 {
-	BinarySearchTree<int> tree = {8};
-	REQUIRE( tree.remove(8) );
-	REQUIRE( tree.size()==0 );
+	BinarySearchTree<int> Tree {8};
+	REQUIRE( Tree.remove(8) );
+	REQUIRE( Tree.size()==0 );
 }
-
+SCENARIO("BST delete root with one child", "[delete]") 
+{
+	BinarySearchTree<int> Tree {8, 4};
+	REQUIRE( Tree.remove(8) );
+	REQUIRE( Tree.size()==0 );
+	REQUIRE(Tree.search(4) != nullptr);
+}
+SCENARIO("BST delete root with children", "[delete]") 
+{
+	BinarySearchTree<int> Tree {8, 4, 3, 10, 9, 13, 11, 12};
+	REQUIRE( Tree.remove(8) );
+	REQUIRE( Tree.size() == 7 );
+}
+SCENARIO("BST delete non root without children", "[delete]") 
+{
+	BinarySearchTree<int> Tree {8, 4, 3, 10, 9, 13, 11, 12};
+	REQUIRE( Tree.remove(3) );
+	REQUIRE( Tree.size()==7 );
+}
+SCENARIO("BST delete non root with one child", "[delete]") 
+{
+	BinarySearchTree<int> Tree {8, 4, 3, 10, 9, 13, 11, 12};
+	REQUIRE( Tree.remove(11) );
+	REQUIRE( Tree.size() == 7 );
+}
+SCENARIO("BST delete non root with one child", "[delete]") 
+{
+	BinarySearchTree<int> Tree {8, 4, 3, 10, 9, 13, 11, 12};
+	REQUIRE( Tree.remove(10) );
+	REQUIRE( Tree.size() == 7 );
+}
 SCENARIO("BSTree operator >>", "[file&stream input]") 
 {
 	BSTree<int> Tree;
