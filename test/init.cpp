@@ -61,6 +61,13 @@ SCENARIO("BSTree remove", "[remove]")
 	Tree.remove(4);
 	REQUIRE(Tree.size()==4);
 }
+SCENARIO("BSTree delete root without children", "[delete]") 
+{
+	BinarySearchTree<int> tree = {8};
+	REQUIRE( tree.remove(8) );
+	REQUIRE( tree.size()==0 );
+}
+
 SCENARIO("BSTree operator >>", "[file&stream input]") 
 {
 	BSTree<int> Tree;
