@@ -92,7 +92,7 @@ SCENARIO("BST delete non root with one child", "[delete]")
 	Tree.remove(11);
 	REQUIRE( Tree.size() == 7 );
 }
-SCENARIO("BST delete non root with one child", "[delete]") 
+SCENARIO("BST delete non root with children", "[delete]") 
 {
 	BSTree<int> Tree ={8, 4, 3, 10, 9, 13, 11, 12};
 	Tree.remove(10);
