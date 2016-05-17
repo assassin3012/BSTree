@@ -70,7 +70,7 @@ SCENARIO("BSTree delete root without children", "[delete]")
 SCENARIO("BST delete root with one child", "[delete]") 
 {
 	BSTree<int> Tree {8, 4};
-	ree.remove(8);
+	Tree.remove(8);
 	REQUIRE( Tree.size()==0 );
 	REQUIRE(Tree.search(4) != nullptr);
 }
