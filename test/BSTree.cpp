@@ -172,9 +172,15 @@ void BSTree<T>::remove(const T &k)
 				{
 					node->parent->right = nullptr;
 				}
+				this->_size -= 1;
+				delete node;
 			}
-			this->_size -= 1;
-			delete node;
+			else
+			{
+				delete this->root;
+				this->root = nullptr;
+				this->_size = 0;
+			}
 		}
 		else if (node->left == nullptr || node->right == nullptr)
 		{
