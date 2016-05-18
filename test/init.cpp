@@ -122,11 +122,26 @@ SCENARIO("BSTree operator <<", "[file&stream output]")
 	out >> OutTree;
 	file.close();
 	out.close();
-	REQUIRE(Tree.search(4) != nullptr);
-	REQUIRE(Tree.search(5) != nullptr);
-	REQUIRE(Tree.search(2) != nullptr);
-	REQUIRE(Tree.search(6) != nullptr);
-	REQUIRE(Tree.search(7) != nullptr);
+	REQUIRE(OutTree.search(4) != nullptr);
+	REQUIRE(OutTree.search(5) != nullptr);
+	REQUIRE(OutTree.search(2) != nullptr);
+	REQUIRE(OutTree.search(6) != nullptr);
+	REQUIRE(OutTree.search(7) != nullptr);
+}
+SCENARIO("BSTree operator <<", "[file&stream output]") 
+{
+	BSTree<int> Tree {1,2,4,6};
+	BSTree<int> CopyTree;
+	fstream out("out.txt");
+	Iterator<int> it(Tree.root());
+	std::copy(it.begin(), it.end(), std::ostream_iterator<int>(out, " "));
+	out.seekg(0);
+	out >> OutTree;
+	out.close();
+	REQUIRE(CopyTree.search(1) != nullptr);
+	REQUIRE(CopyTree.search(2) != nullptr);
+	REQUIRE(CopyTree.search(4) != nullptr);
+	REQUIRE(CopyTree.search(6) != nullptr);
 }
 SCENARIO("BSTree EmptyException", "[emptyerror]")
 {
