@@ -128,7 +128,7 @@ SCENARIO("BSTree operator <<", "[file&stream output]")
 	REQUIRE(OutTree.search(6) != nullptr);
 	REQUIRE(OutTree.search(7) != nullptr);
 }
-SCENARIO("BSTree operator <<", "[file&stream output]") 
+SCENARIO("BSTree iterator1", "[iterator1]") 
 {
 	BSTree<int> Tree {1,2,4,6};
 	BSTree<int> CopyTree;
