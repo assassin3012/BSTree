@@ -42,7 +42,7 @@ public:
 private:
 	std::vector<T> list_;
 };
-template <typename T>
+/**template <typename T>
 class Iterator2 {
 public:
 	void fillvector2(std::vector<Node<T>*> & list, Node<T> * node)
@@ -75,7 +75,7 @@ public:
 private:
 	std::vector<Node<T>*> list_;
 };
-
+*/
 template <class T>
 struct Node
 {
