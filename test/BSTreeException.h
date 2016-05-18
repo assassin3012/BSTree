@@ -2,11 +2,11 @@
 #include <exception>
 using namespace std;
 
-class BSTreeException : public std::exception
+class BSTreeException : public std::invalid_argument
 {
 public:
-	BSTreeException() : std::exception(invalid_argument("Unknown exception")) {};
-	BSTreeException(const char *_message) : std::exception(invalid_argument(_message)) {};
+	BSTreeException() : std::invalid_argument("Unknown exception") {};
+	BSTreeException(const char *_message) : std::invalid_argument(_message) {};
 };
 class EmptyException : public BSTreeException
 {
