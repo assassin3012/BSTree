@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "BSTree.h"
 #include <initializer_list>
 
@@ -52,24 +53,36 @@ Node<T>* BSTree<T>::min(Node<T>* node) const
 template <typename T>
 BSTree<T>::BSTree(const std::initializer_list<T> &list)
 {
-	root = nullptr;
+	root_ = nullptr;
 	for (auto i : list)
 	{
 		this->insert(i);
 	}
 }
 template <typename T>
+BSTree<T>::~BSTree()
+{
+	if (root_ != nullptr) {
+		std::vector<Node<T> *> listOfNodes;
+		listOfNodes.reserve(size_);
+		Node<T>::fillList(listOfNodes, root_);
+		for (Node<T> * node : listOfNodes) {
+			delete node;
+		}
+	}
+}
+template <typename T>
 void BSTree<T>::insert(const T &k)
 {
-	if (root == nullptr)
+	if (root_ == nullptr)
 	{
-		root = new Node<T>(k);
-		root->parent = nullptr;
-		this->_size += 1;
+		root_ = new Node<T>(k);
+		root_->parent = nullptr;
+		this->size_ += 1;
 	}
 	else
 	{
-		Node<T>* p = root;
+		Node<T>* p = root_;
 		Node<T>* prev = nullptr;
 		while (p != nullptr)
 		{
@@ -89,7 +102,7 @@ void BSTree<T>::insert(const T &k)
 		}
 		else
 		{
-			this->_size += 1;
+			this->size_ += 1;
 			if (prev->key > k)
 			{
 				prev->left = new Node<T>(k);
@@ -106,14 +119,14 @@ void BSTree<T>::insert(const T &k)
 template <typename T>
 Node<T>* BSTree<T>::search(const T &k) const
 {
-	if (root == nullptr)
+	if (root_ == nullptr)
 	{
 		throw EmptyException();
 	}
 	else
 	{
-		Node<T>* node = root;
-		search(node, k);
+		Node<T>* node = root_;
+		return search(node, k);
 	}
 }
 template <typename T>
@@ -149,7 +162,7 @@ Node<T>* BSTree<T>::search(Node<T>* node, const T &k) const
 template <typename T>
 void BSTree<T>::remove(const T &k)
 {
-	if (root == nullptr)
+	if (root_ == nullptr)
 	{
 		throw EmptyException();
 	}
@@ -172,14 +185,14 @@ void BSTree<T>::remove(const T &k)
 				{
 					node->parent->right = nullptr;
 				}
-				this->_size -= 1;
+				this->size_ -= 1;
 				delete node;
 			}
 			else
 			{
-				delete this->root;
-				this->root = nullptr;
-				this->_size = 0;
+				delete this->root_;
+				this->root_ = nullptr;
+				this->size_ = 0;
 			}
 		}
 		else if (node->left == nullptr || node->right == nullptr)
@@ -210,22 +223,22 @@ void BSTree<T>::remove(const T &k)
 					}
 					node->left->parent = node->parent;
 				}
-				this->_size -= 1;
+				this->size_ -= 1;
 				delete node;
 			}
 			else
 			{
 				if (node->left == nullptr)
 				{
-					root = node->right;
+					root_ = node->right;
 					node->right->parent = nullptr;
 				}
 				else
 				{
-					root = node->left;
+					root_ = node->left;
 					node->left->parent = nullptr;
 				}
-				this->_size -= 1;
+				this->size_ -= 1;
 				delete node;
 			}
 		}
@@ -249,13 +262,13 @@ void BSTree<T>::remove(const T &k)
 					pos->right->parent = pos->parent;
 				}
 			}
-			this->_size -= 1;
+			this->size_ -= 1;
 			delete pos;
 		}
 	}
 }
 template <typename T>
-void BSTree<T>::deletetree(const T &k)
+void BSTree<T>::deletewithchild(const T &k)
 {
 	if (root == nullptr)
 	{
@@ -292,37 +305,37 @@ void BSTree<T>::deletetree(const T &k)
 	}
 }
 template <typename T>
-void BSTree<T>::printBSTree(std::ostream &os/* = std::cout*/) const
+void BSTree<T>::print(std::ostream &os/* = std::cout*/) const
 {
-	if (root == nullptr)
+	if (root_ == nullptr)
 	{
 		throw EmptyException();
 	}
 	else
 	{
-		Node<T>* node = root;
+		Node<T>* node = root_;
 		{
-			printBSTree(node, os);
+			print(node, os);
 		}
 	}
 }
 template <typename T>
-void BSTree<T>::printBSTree(Node<T>* node, std::ostream &os) const
+void BSTree<T>::print(Node<T>* node, std::ostream &os) const
 {
 	if (node->left != nullptr)
 	{
-		printBSTree(node->left, os);
+		print(node->left, os);
 	}
 	os << node->key << " ";
 	if (node->right != nullptr)
 	{
-		printBSTree(node->right, os);
+		print(node->right, os);
 	}
 }
 template <typename T>
 std::ostream & operator << (std::ostream &os, BSTree<T> &out)
 {
-	out.printBSTree(os);
+	out.print(os);
 	return os;
 }
 template <typename T>
@@ -351,7 +364,7 @@ template <typename T>
 std::fstream & operator << (std::fstream &file, BSTree<T> &out)
 {
 	file << out.size() << " ";
-	out.printBSTree(file);
+	out.print(file);
 	return file;
 }
 template <typename T>
@@ -376,3 +389,4 @@ std::fstream & operator >> (std::fstream &file, BSTree<T> &in)
 	}
 	return file;
 }
+
