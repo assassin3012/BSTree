@@ -154,13 +154,12 @@ SCENARIO("BSTree EmptyException", "[emptyerror]")
 	}
 	catch (EmptyException &ex) {
 		flag = true;
-		y=ex.what();
+		REQUIRE(ex.what());
 		
 	}
 	catch (BSTreeException &ex) {
 		flagBad = true;
 	}
-	REQUIRE(y);
 	REQUIRE(flag);
 	REQUIRE(!flagBad);
 }
