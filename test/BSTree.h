@@ -37,8 +37,8 @@ public:
 			fillvector(list, node->right);
 		}
 	}
-	auto begin() const { return list_.begin(); };
-	auto end() const { return list_.end(); };
+	decltype(auto) begin() { return list_.begin(); };
+	decltype(auto) end() { return list_.end(); };
 private:
 	std::vector<T> list_;
 };
@@ -70,8 +70,8 @@ public:
 		parent = other.parent;
 		return *this;
 	}
-	auto begin() const { return list_.begin(); };
-	auto end() const { return list_.end(); };
+	decltype(auto) begin() { return list_.begin(); };
+	decltype(auto) end() { return list_.end(); };
 private:
 	std::vector<Node<T>*> list_;
 };
