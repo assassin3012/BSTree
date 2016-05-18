@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "BSTreeException.h"
-
+#include <vector>
 template <typename T>
 class BSTree;
 
@@ -21,6 +21,61 @@ std::fstream & operator << (std::fstream &file, BSTree<T> &);
 template <typename T>
 std::fstream & operator >> (std::fstream &file, BSTree<T> &);
 
+template <typename T>
+class Iterator {
+public:
+	Iterator<T>(Node<T>* node) { fillvector(list_, node); }
+	void fillvector(std::vector<T>& list, Node<T> * node)
+	{
+		if (node->left)
+		{
+			fillvector(list, node->left);
+		}
+		list.push_back(node->key);
+		if (node->right)
+		{
+			fillvector(list, node->right);
+		}
+	}
+	auto begin() const { return list_.begin(); };
+	auto end() const { return list_.end(); };
+private:
+	std::vector<T> list_;
+};
+template <typename T>
+class Iterator2 {
+public:
+	void fillvector2(std::vector<Node<T>*> & list, Node<T> * node)
+	{
+		if (node->left)
+		{
+			fillvector2(list, node->left);
+		}
+		list.push_back(node);
+		if (node->right)
+		{
+			fillvector2(list, node->right);
+		}
+	}
+	Iterator2<T>(Node<T>* node) { fillvector2(list_, node); }
+	Node<T>& operator=(const Node<T>& other) 
+	{
+		if (this == &right)
+		{
+			return *this;
+		}
+		key = other.key;
+		right = other.right;
+		left = other.left;
+		parent = other.parent;
+		return *this;
+	}
+	auto begin() const { return list_.begin(); };
+	auto end() const { return list_.end(); };
+private:
+	std::vector<Node<T>*> list_;
+};
+
 template <class T>
 struct Node
 {
@@ -31,34 +86,46 @@ struct Node
 	Node<T>* left;
 	Node<T>* right;
 	Node<T>* parent;
-};
 
+	static void fillList(std::vector<Node<T> *> & list, Node<T> * node)
+	{
+		if (node->left) 
+		{
+			fillList(list, node->left);
+		}
+		list.push_back(node);
+		if (node->right) 
+		{
+			fillList(list, node->right);
+		}
+	}
+	
+};
 template <typename T>
 class BSTree
 {
 public:
-	BSTree<T>() : root(nullptr), _size(0) {};
+	BSTree<T>() : root_(nullptr), size_(0) {};
 	BSTree<T>(const std::initializer_list<T> &);
-	~BSTree() { if (root!=nullptr) deletetree(root->key); }
+	~BSTree();
+	Node<T>* root() { return root_; };
 	Node<T>* search(const T &k) const;
 	Node<T>* next(Node<T>* node) const;
 	Node<T>* prev(Node<T>* node) const;
 	Node<T>* min(Node<T>* node) const;
 	Node<T>* max(Node<T>* node) const;
 	void insert(const T &k);
-	void deletetree(const T &k);
 	void remove(const T &k);
-	//auto begin() {};
-	//auto end() { };
-	size_t size() { return _size; };
-	void printBSTree(std::ostream &os/*=std::cout*/) const;
+	void deletewithchild(const T &k);
+	size_t size() { return size_; };
+	void print(std::ostream &os/*=std::cout*/) const;
 	friend std::ostream & operator << <>(std::ostream &output, BSTree &);
 	friend std::istream & operator >> <>(std::istream &input, BSTree &);
 	friend std::fstream & operator << <>(std::fstream &file, BSTree<T> &);
 	friend std::fstream & operator >> <>(std::fstream &file, BSTree<T> &);
 private:
 	Node<T>* search(Node<T>* node, const T &k) const;
-	void printBSTree(Node<T>*, std::ostream &) const;
-	Node<T>* root;
-	size_t _size;
+	void print(Node<T>*, std::ostream &) const;
+	Node<T>* root_;
+	size_t size_;
 };
