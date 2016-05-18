@@ -147,16 +147,20 @@ SCENARIO("BSTree EmptyException", "[emptyerror]")
 {
 	bool flagBad=false;
 	bool flag=false;
+	char* y;
 	BSTree<int> Tree;
 	try {
 	  Tree.search(404);
 	}
 	catch (EmptyException &ex) {
 		flag = true;
+		y=ex.what()
+		
 	}
 	catch (BSTreeException &ex) {
 		flagBad = true;
 	}
+	REQUIRE(y);
 	REQUIRE(flag);
 	REQUIRE(!flagBad);
 }
