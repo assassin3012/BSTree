@@ -37,9 +37,9 @@ public:
 			fillvector(list, node->right);
 		}
 	}
-	std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<int>>> begin() { return list_.begin(); };
+	/*std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<int>>> begin() { return list_.begin(); };
 	std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<int>>> end() { return list_.end(); };
-	/*decltype(auto) begin() { return list_.begin(); };
+	decltype(auto) begin() { return list_.begin(); };
 	decltype(auto) end() { return list_.end(); };*/
 private:
 	std::vector<T> list_;
