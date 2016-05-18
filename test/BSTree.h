@@ -37,16 +37,16 @@ public:
 			fillvector(list, node->right);
 		}
 	}
+	// Не могу задать возвращаемое значение, при котором тесты не выдают ошибку
 	/*std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<int>>> begin() { return list_.begin(); };
 	std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<int>>> end() { return list_.end(); };
-	decltype(auto) begin() { return list_.begin(); }; Не могу задать возвращаемое значение, прикотором тесты не выдают ошибку
+	decltype(auto) begin() { return list_.begin(); }; 
 	decltype(auto) end() { return list_.end(); };*/ 
 private:
 	std::vector<T> list_;
 };
 /**template <typename T>
-class Iterator2 { бинарный "=": не найден оператор, принимающий правый операнд типа "Node<T> " (или приемлемое преобразование отсутствует)
-
+class Iterator2 { 
 public:
 	void fillvector2(std::vector<Node<T>*> & list, Node<T> * node)
 	{
