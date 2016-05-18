@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "BSTree.h"
 #include <initializer_list>
 
